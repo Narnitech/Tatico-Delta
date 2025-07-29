@@ -34,6 +34,53 @@
             color: #000;
             box-shadow: 0 0 8px rgba(220, 20, 60, 0.7);
         }
+        
+        /* Corrigindo estilos dos campos de input */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: crimson;
+            box-shadow: 0 0 5px rgba(220, 20, 60, 0.5);
+        }
+        
+        .submit-btn.admin-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: transparent;
+            color: crimson;
+            border: 1px solid crimson;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn.admin-btn:hover {
+            background-color: crimson;
+            color: #000;
+        }
     </style>
 </head>
 <body>
