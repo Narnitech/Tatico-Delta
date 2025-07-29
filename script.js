@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Verificar se usuário está logado e atualizar UI
     checkLoginStatus();
     
+    // Implementação do cabeçalho escondido na rolagem (apenas mobile)
+    if (window.innerWidth <= 768) {
+        implementHeaderScroll();
+    }
+    
     // Form submission handling
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -197,4 +202,41 @@ function getCurrentUser() {
 function getUsers() {
     const usersJSON = localStorage.getItem('users');
     return usersJSON ? JSON.parse(usersJSON) : [];
+}
+
+// Função para controlar a exibição do cabeçalho durante a rolagem (apenas mobile)
+function implementHeaderScroll() {
+    const header = document.querySelector('header');
+    let lastScrollY = window.scrollY;
+    
+    // Adicionar classe para transição suave
+    header.style.transition = 'transform 0.3s ease-in-out';
+    
+    // Controlar a visibilidade do cabeçalho durante a rolagem
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        
+        // Se estiver rolando para baixo e já passou pelo menos 50px
+        if (currentScrollY > lastScrollY && currentScrollY > 50) {
+            // Esconder o cabeçalho
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // Mostrar o cabeçalho
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollY = currentScrollY;
+    });
+    
+    // Atualizar ao redimensionar a janela
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            // Resetar para desktop
+            header.style.transform = 'translateY(0)';
+            header.style.transition = 'none';
+        } else {
+            // Reabilitar para mobile
+            header.style.transition = 'transform 0.3s ease-in-out';
+        }
+    });
 }
