@@ -124,6 +124,25 @@
             font-size: 0.9rem;
         }
         
+        /* Estilos especiais para o card de receita mensal */
+        .revenue-card {
+            background-color: #2c2c2c;
+            border: 1px solid var(--admin-primary);
+            box-shadow: 0 0 10px rgba(220, 20, 60, 0.2);
+        }
+        
+        .revenue-card .number {
+            color: #50c878; /* Verde esmeralda para representar dinheiro */
+            font-size: 2.2rem;
+            text-shadow: 0 0 5px rgba(80, 200, 120, 0.3);
+        }
+        
+        .revenue-card .label {
+            color: #d4d4d4;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
         .user-welcome {
             margin-bottom: 1rem;
             color: var(--admin-primary);
@@ -228,9 +247,9 @@
                     <div class="number">8</div>
                     <div class="label">Mensagens Novas</div>
                 </div>
-                <div class="stat-card">
-                    <div class="number">152</div>
-                    <div class="label">Visitas (Hoje)</div>
+                <div class="stat-card revenue-card">
+                    <div class="number">R$ 48.750</div>
+                    <div class="label">Receita Mensal</div>
                 </div>
                 <div class="stat-card">
                     <div class="number">5</div>
