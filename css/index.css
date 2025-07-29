@@ -161,21 +161,82 @@
 
 /* Responsividade específica para página inicial */
 @media (max-width: 768px) {
+    /* Hero section */
+    .hero {
+        padding: 6rem 1rem 4rem;
+    }
+
     .hero-content h1 {
         font-size: 2.5rem;
     }
     
     .hero-content p {
         font-size: 1.2rem;
+        max-width: 100%;
+    }
+    
+    /* Serviços */
+    .services {
+        padding: 3rem 1rem;
     }
 
     .service-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+    
+    .service-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    /* Seção Sobre */
+    .about {
+        padding: 3rem 1rem;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+    
+    .stat-item {
+        padding: 1.2rem 1rem;
+    }
+
+    /* Contato */
+    .contact {
+        padding: 3rem 1rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 0.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
     }
 }
 
+/* Para telas muito pequenas */
 @media (max-width: 480px) {
-    .service-grid {
-        grid-template-columns: 1fr;
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .service-card h3,
+    .stat-item h3 {
+        font-size: 1.1rem;
+    }
+
+    .submit-btn {
+        padding: 0.8rem;
     }
 }
