@@ -143,6 +143,25 @@
             font-size: 1rem;
         }
         
+        /* Estilos para o card de funcionários cadastrados */
+        .staff-card {
+            background-color: #2a2a3a;
+            border: 1px solid #4169e1; /* Azul royal */
+            box-shadow: 0 0 10px rgba(65, 105, 225, 0.2);
+        }
+        
+        .staff-card .number {
+            color: #4169e1; /* Azul royal */
+            font-size: 2.2rem;
+            text-shadow: 0 0 5px rgba(65, 105, 225, 0.3);
+        }
+        
+        .staff-card .label {
+            color: #d4d4d4;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
         .user-welcome {
             margin-bottom: 1rem;
             color: var(--admin-primary);
@@ -239,9 +258,9 @@
             <h2 class="admin-title">Dashboard</h2>
             
             <div class="stat-cards">
-                <div class="stat-card">
+                <div class="stat-card staff-card">
                     <div class="number">25</div>
-                    <div class="label">Usuários Cadastrados</div>
+                    <div class="label">Funcionários Cadastrados</div>
                 </div>
                 <div class="stat-card">
                     <div class="number">8</div>
