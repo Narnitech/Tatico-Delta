@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Tático Delta</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="imagens/favicon.ico" type="image/x-icon">
+    <style>
+        .admin-header {
+            background-color: #0e0e0e;
+            border-bottom: 2px solid crimson;
+        }
+        
+        .admin-title {
+            color: crimson;
+            text-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+        }
+        
+        .admin-title:after {
+            background-color: crimson;
+            box-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+        }
+        
+        .admin-btn {
+            border-color: crimson;
+            color: crimson;
+        }
+        
+        .admin-btn:hover {
+            background-color: crimson;
+            color: #000;
+            box-shadow: 0 0 8px rgba(220, 20, 60, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <header class="thin-header admin-header">
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="imagens/tatico.jpg" alt="Tático Delta Logo" class="logo-img">
+                    <h1>TÁTICO DELTA</h1>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-form-container">
+            <h2 class="admin-title">Administração</h2>
+            <form id="admin-login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="admin-user">Usuário:</label>
+                    <input type="text" id="admin-user" name="admin-user" required>
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Senha:</label>
+                    <input type="password" id="admin-password" name="admin-password" required>
+                </div>
+                <button type="submit" class="submit-btn admin-btn">Acesso Administrativo</button>
+            </form>
+            <div id="admin-error" style="color: crimson; margin-top: 15px; text-align: center; display: none;">
+                Credenciais inválidas. Acesso restrito.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TÁTICO DELTA</h3>
+                <p>Segurança Empresarial</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Telefone: (XX) XXXX-XXXX</p>
+                <p>Email: contato@taticodelta.com.br</p>
+            </div>
+            <div class="footer-section">
+                <h3>Siga-nos</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Tático Delta - Todos os direitos reservados</p>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrativo - Tático Delta</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="imagens/favicon.ico" type="image/x-icon">
+    <style>
+        /* Estilos específicos para o dashboard administrativo */
+        :root {
+            --admin-primary: crimson;
+            --admin-secondary: #ff6b81;
+            --admin-light: #ffe8e8;
+        }
+        
+        .admin-header {
+            background-color: #0e0e0e;
+            border-bottom: 2px solid var(--admin-primary);
+        }
+        
+        .dashboard-container {
+            display: flex;
+            min-height: calc(100vh - 50px);
+            padding-top: 50px;
+        }
+        
+        .admin-sidebar {
+            width: 250px;
+            background-color: #121212;
+            border-right: 1px solid var(--admin-primary);
+            padding: 2rem 0;
+        }
+        
+        .admin-main {
+            flex: 1;
+            padding: 2rem;
+            background-color: #0a0a0a;
+        }
+        
+        .admin-title {
+            color: var(--admin-primary);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 5px rgba(220, 20, 60, 0.3);
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--admin-primary);
+            padding-bottom: 0.5rem;
+        }
+        
+        .admin-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .admin-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .admin-menu a {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-menu a:hover {
+            background-color: #1a1a1a;
+            color: var(--admin-primary);
+        }
+        
+        .admin-menu a.active {
+            background-color: #1a1a1a;
+            border-left: 3px solid var(--admin-primary);
+            color: var(--admin-primary);
+        }
+        
+        .admin-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .admin-card {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .admin-card h3 {
+            color: var(--admin-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .stat-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .stat-card {
+            background-color: #242424;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--admin-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card .label {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .user-welcome {
+            margin-bottom: 1rem;
+            color: var(--admin-primary);
+            font-weight: bold;
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .admin-table th, .admin-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        
+        .admin-table th {
+            background-color: #242424;
+            color: #fff;
+        }
+        
+        .admin-table tr:hover {
+            background-color: #242424;
+        }
+        
+        .btn-admin {
+            background-color: transparent;
+            color: var(--admin-primary);
+            border: 1px solid var(--admin-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-admin:hover {
+            background-color: var(--admin-primary);
+            color: #000;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+            
+            .admin-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--admin-primary);
+                padding: 1rem 0;
+            }
+            
+            .stat-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="thin-header admin-header">
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="imagens/tatico.jpg" alt="Tático Delta Logo" class="logo-img">
+                    <h1>TÁTICO DELTA</h1>
+                </a>
+            </div>
+            <div id="admin-nav-buttons">
+                <!-- Será preenchido pelo JavaScript -->
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="admin-sidebar">
+            <ul class="admin-menu">
+                <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Usuários</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i> Mensagens</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Configurações</a></li>
+                <li><a href="#" id="admin-logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+            </ul>
+        </div>
+        
+        <div class="admin-main">
+            <div class="user-welcome" id="admin-welcome">
+                <!-- Será preenchido pelo JavaScript -->
+            </div>
+            
+            <h2 class="admin-title">Dashboard</h2>
+            
+            <div class="stat-cards">
+                <div class="stat-card">
+                    <div class="number">25</div>
+                    <div class="label">Usuários Cadastrados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">8</div>
+                    <div class="label">Mensagens Novas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">152</div>
+                    <div class="label">Visitas (Hoje)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">5</div>
+                    <div class="label">Serviços Ativos</div>
+                </div>
+            </div>
+            
+            <div class="admin-card">
+                <h3>Usuários Recentes</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Data de Cadastro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        <!-- Será preenchido pelo JavaScript -->
+                        <tr>
+                            <td colspan="4">Carregando usuários...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="admin-card">
+                <h3>Mensagens Recentes</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Assunto</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>João Silva</td>
+                            <td>joao@email.com</td>
+                            <td>Orçamento</td>
+                            <td>28/07/2025</td>
+                            <td><a href="#" class="btn-admin">Ver</a></td>
+                        </tr>
+                        <tr>
+                            <td>Maria Oliveira</td>
+                            <td>maria@email.com</td>
+                            <td>Contratação</td>
+                            <td>27/07/2025</td>
+                            <td><a href="#" class="btn-admin">Ver</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Verificar se é um admin logado
+            if (!isAdminLoggedIn()) {
+                window.location.href = 'admin-login.html';
+                return;
+            }
+            
+            // Preencher informações do admin
+            const adminSession = getCurrentAdminSession();
+            const welcomeElement = document.getElementById('admin-welcome');
+            if (welcomeElement && adminSession) {
+                welcomeElement.textContent = `Bem-vindo, ${adminSession.name}!`;
+            }
+            
+            // Configurar botão de logout
+            const logoutBtn = document.getElementById('admin-logout');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    logoutAdmin();
+                    window.location.href = 'admin-login.html';
+                });
+            }
+            
+            // Preencher tabela de usuários
+            const users = getUsers();
+            const tableBody = document.getElementById('users-table-body');
+            if (tableBody && users.length > 0) {
+                tableBody.innerHTML = '';
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td>N/A</td>
+                        <td><a href="#" class="btn-admin">Detalhes</a></td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } else if (tableBody) {
+                tableBody.innerHTML = '<tr><td colspan="4">Nenhum usuário cadastrado</td></tr>';
+            }
+            
+            // Adicionar botão de volta ao site
+            const navButtons = document.getElementById('admin-nav-buttons');
+            if (navButtons) {
+                navButtons.innerHTML = `
+                    <a href="index.html" class="btn btn-admin">Voltar ao Site</a>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -7,6 +7,36 @@ document.addEventListener('DOMContentLoaded', () => {
         implementHeaderScroll();
     }
     
+    // Admin login handling
+    const adminLoginForm = document.getElementById('admin-login-form');
+    if (adminLoginForm) {
+        // Definir credencial padrão de admin se não existir
+        setupAdminCredentials();
+        
+        adminLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('admin-user').value;
+            const password = document.getElementById('admin-password').value;
+            
+            if (loginAdmin(username, password)) {
+                // Sucesso - redirecionar para dashboard admin
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                // Erro - mostrar mensagem
+                const errorDiv = document.getElementById('admin-error');
+                if (errorDiv) {
+                    errorDiv.style.display = 'block';
+                    
+                    // Esconder a mensagem após 3 segundos
+                    setTimeout(() => {
+                        errorDiv.style.display = 'none';
+                    }, 3000);
+                }
+            }
+        });
+    }
+    
     // Form submission handling
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -239,4 +269,61 @@ function implementHeaderScroll() {
             header.style.transition = 'transform 0.3s ease-in-out';
         }
     });
+}
+
+// Configuração e gerenciamento de administradores
+
+// Configurar credenciais de administrador padrão se não existirem
+function setupAdminCredentials() {
+    const adminCredentials = localStorage.getItem('adminCredentials');
+    if (!adminCredentials) {
+        // Criar admin padrão - em produção isso seria feito no servidor
+        const defaultAdmin = [
+            {
+                username: 'admin',
+                password: 'tatico2025',  // Em produção, usar senha hash
+                name: 'Administrador',
+                role: 'super_admin'
+            }
+        ];
+        
+        localStorage.setItem('adminCredentials', JSON.stringify(defaultAdmin));
+    }
+}
+
+// Verificar login de administrador
+function loginAdmin(username, password) {
+    const adminCredentials = JSON.parse(localStorage.getItem('adminCredentials') || '[]');
+    const admin = adminCredentials.find(admin => admin.username === username && admin.password === password);
+    
+    if (admin) {
+        // Salvar sessão de administrador
+        const session = {
+            username: admin.username,
+            name: admin.name,
+            role: admin.role,
+            loggedInAt: new Date().toISOString()
+        };
+        
+        localStorage.setItem('adminSession', JSON.stringify(session));
+        return true;
+    }
+    
+    return false;
+}
+
+// Verificar se administrador está logado
+function isAdminLoggedIn() {
+    return localStorage.getItem('adminSession') !== null;
+}
+
+// Obter sessão atual do administrador
+function getCurrentAdminSession() {
+    const sessionJSON = localStorage.getItem('adminSession');
+    return sessionJSON ? JSON.parse(sessionJSON) : null;
+}
+
+// Logout do administrador
+function logoutAdmin() {
+    localStorage.removeItem('adminSession');
 }
